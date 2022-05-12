@@ -12,7 +12,7 @@
 int main(void)
 {
     const char *text = "{\n    \"message\":\"Hello, world!\",\n    \"value\":45,\n    \"type\":\"test\"\n}";
-	enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_MEDIUM;  // Error correction level
+    enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_MEDIUM;  // Error correction level
 	
     int preferred_code_size = 1024;
 
@@ -34,7 +34,11 @@ int main(void)
     int actual_code_size = preferred_code_size - (preferred_code_size % generated_code_size);
 
 #ifdef OWN_PRINTF_DEBUG
-    printf("\nQR STATS\n* Generated QR Code size: %4d\n* Desired size:           %4d\n* Scalar:                 %4d\n* Actual size:            %4d\n\n", generated_code_size, preferred_code_size, scalar, actual_code_size);
+    printf("\nQR STATS\n");
+    printf("* Generated QR Code size: %4d\n", generated_code_size);
+    printf("* Desired size:           %4d\n", preferred_code_size);
+    printf("* Scalar:                 %4d\n", scalar);
+    printf("* Actual size:            %4d\n\n", actual_code_size);
 #endif
 
     uint8_t *out_buffer = malloc(actual_code_size * actual_code_size * 3);
@@ -57,7 +61,7 @@ int main(void)
         }
     }
 
-    const char *filepath = "./img2.jpeg";
+    const char *filepath = "./img.jpeg";
     int res = tje_encode_to_file_at_quality(filepath, 3, actual_code_size, actual_code_size, 3, out_buffer);
     printf("QR code write to file: %s\n\n", res ? "success" : "failure");
 
