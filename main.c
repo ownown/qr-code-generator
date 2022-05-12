@@ -13,13 +13,13 @@ int main(void)
 {
     const char *text = "{\n    \"message\":\"Hello, world!\",\n    \"value\":45,\n    \"type\":\"test\"\n}";
     enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_MEDIUM;  // Error correction level
-	
+    
     int preferred_code_size = 1024;
 
-	// Make and print the QR Code symbol
-	uint8_t qrcode[qrcodegen_BUFFER_LEN_MAX];
-	uint8_t tempBuffer[qrcodegen_BUFFER_LEN_MAX];
-	if (!qrcodegen_encodeText(text, tempBuffer, qrcode, errCorLvl, qrcodegen_VERSION_MIN, qrcodegen_VERSION_MAX, qrcodegen_Mask_AUTO, true))
+    // Make and print the QR Code symbol
+    uint8_t qrcode[qrcodegen_BUFFER_LEN_MAX];
+    uint8_t tempBuffer[qrcodegen_BUFFER_LEN_MAX];
+    if (!qrcodegen_encodeText(text, tempBuffer, qrcode, errCorLvl, qrcodegen_VERSION_MIN, qrcodegen_VERSION_MAX, qrcodegen_Mask_AUTO, true))
     {
         printf("ERROR: Failed to create QR code\n");
         return EXIT_FAILURE;
